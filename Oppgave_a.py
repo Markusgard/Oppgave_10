@@ -9,7 +9,6 @@
 # returnere disse listene eller dictionaryene. Det er en del av oppgaven at dere finner ut hvilke
 # datastrukturer som er mest hensiktsmessige til dette.
 
-
 class vardata:
     def __init__(self, navn, stasjonsid, dato, snodybde, nedbor, middeltemperatur, skydekke, middelvind):
         self.navn = navn
@@ -35,6 +34,11 @@ while True:
         for linje in fil:
             linje = linje.strip()
             linje = linje.split(";")
+            for i in range(3, len(linje)):
+                if linje[i] == "-":
+                    linje[i] = None
+                else:
+                    linje[i] = float(linje[i])
             var_data.append(vardata(linje[0], linje[1], linje[2], linje[3], linje[4], linje[5], linje[6], linje[7]))
         break
     except FileNotFoundError:
